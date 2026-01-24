@@ -2144,11 +2144,11 @@ const App: React.FC = () => {
           <p className="text-lg font-bold mb-8 opacity-80 uppercase tracking-tight">Want to see how BabySimple stacks up against others?</p>
 
           <div className="grid gap-6">
-            {[
+            {(post.hubLinks || [
               { title: 'BabySimple vs ChatGPT', slug: 'babysimple-vs-chatgpt' },
               { title: 'BabySimple vs Hemingway', slug: 'babysimple-vs-hemingway' },
               { title: 'BabySimple vs Claude', slug: 'babysimple-vs-claude' }
-            ].map((hubLink, hi) => (
+            ]).map((hubLink, hi) => (
               hubLink.slug !== post.slug && (
                 <button
                   key={hi}
