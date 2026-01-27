@@ -20,6 +20,14 @@ import { SEO } from './src/components/SEO';
 import { SchemaMarkup } from './src/components/Schema';
 
 const App: React.FC = () => {
+  const validateEmail = (email: string) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedNiche, setSelectedNiche] = useState<NicheType>('Legal');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,7 +74,7 @@ const App: React.FC = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
 
   const handleNewsletterSubscribe = () => {
-    if (newsletterEmail.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    if (validateEmail(newsletterEmail)) {
       window.open(`https://entrextlabs.substack.com/subscribe?email=${encodeURIComponent(newsletterEmail)}`, '_blank');
     } else {
       alert("Please enter a valid email address.");
@@ -289,6 +297,12 @@ const App: React.FC = () => {
 
     try {
       if (authMode === 'signup') {
+        if (!validateEmail(email)) {
+          alert("Please enter a valid email address.");
+          setIsAuthLoading(false);
+          return;
+        }
+
         const { data, error } = await supabase.auth.signUp({
           email: email,
           password: pass,
@@ -392,9 +406,17 @@ const App: React.FC = () => {
 
 
   const callSecondaryModel = async (text: string, tone: ToneType, niche: NicheType, apiKey: string) => {
+    const wordCount = text.split(/\s+/).filter(Boolean).length;
+    const isShort = wordCount < 5;
+
     // 1. Check for xAI (Grok) Key
     if (apiKey.startsWith('xai-')) {
       console.log("Using xAI (Grok)...");
+
+      const systemPrompt = isShort
+        ? `You are an expert translator. Only provide the extremely concise, direct everyday translation. No explanations, just the simplest equivalent.`
+        : `You are an expert at simplifying complex ${niche} jargon into plain English. Tone: ${tone}. Use metaphors and break down concepts.`;
+
       const response = await fetch('https://api.x.ai/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -404,10 +426,10 @@ const App: React.FC = () => {
         body: JSON.stringify({
           messages: [{
             role: 'system',
-            content: `You are an expert at simplifying complex ${niche} jargon into plain English. Tone: ${tone}.`
+            content: systemPrompt
           }, {
             role: 'user',
-            content: `Simplify this text in ${targetLanguage} language: "${text}"`
+            content: isShort ? `Translate this term to simple everyday ${targetLanguage}: "${text}"` : `Simplify this text in ${targetLanguage} language: "${text}"`
           }],
           model: "grok-beta",
           stream: false,
@@ -426,12 +448,18 @@ const App: React.FC = () => {
 
     // 2. Default to Groq (Llama-3)
     const groq = new Groq({ apiKey, dangerouslyAllowBrowser: true });
+
+    const groqPrompt = isShort
+      ? `Provide the extremely concise, direct everyday ${targetLanguage} equivalent for this term. No bullet points, no explanations. Term: "${text}"`
+      : `Simplify the following ${niche} technical/jargon-heavy text into plain ${targetLanguage} for a layman. Use a ${tone} tone. Keep it concise.
+        Maintain a 6th-grade reading level. Break down jargon into everyday metaphors. Use bullet points for readability.
+        IMPORTANT: Use ONLY clear text paragraphs and bullet points. NEVER generate Mermaid code, flowcharts, or diagrams.
+        Text: "${text}"`;
+
     const chatCompletion = await groq.chat.completions.create({
       messages: [{
         role: 'user',
-        content: `Simplify the following ${niche} technical/jargon-heavy text into plain ${targetLanguage} for a layman. Use a ${tone} tone. Keep it concise.
-        IMPORTANT: Use ONLY clear text paragraphs and bullet points. NEVER generate Mermaid code, flowcharts, or diagrams.
-        Text: "${text}"`
+        content: groqPrompt
       }],
       model: 'llama-3.3-70b-versatile',
     });
@@ -648,7 +676,12 @@ const App: React.FC = () => {
 
       try {
 
-        const prompt = `Simplify the following ${selectedNiche} technical/jargon-heavy text into plain ${targetLanguage} for a layman. 
+        const wordCount = currentText.split(/\s+/).filter(Boolean).length;
+        const isShort = wordCount < 5;
+
+        const prompt = isShort
+          ? `Provide the extremely concise, direct everyday ${targetLanguage} equivalent for this term. Return ONLY the simple term, no explanations or formatting. Term: "${currentText}"`
+          : `Simplify the following ${selectedNiche} technical/jargon-heavy text into plain ${targetLanguage} for a layman. 
              Maintain a 6th-grade reading level. Break down jargon into everyday metaphors. Use bullet points for readability.
              
              IMPORTANT: NEVER generate Mermaid diagrams, flowcharts, or code blocks. Use ONLY plain text and bullet points.
@@ -792,8 +825,13 @@ const App: React.FC = () => {
           <button
             id="invite-btn"
             onClick={async () => {
-              if (!teamEmailInput.trim()) return;
               const emailToAdd = teamEmailInput.trim();
+              if (!emailToAdd) return;
+
+              if (!validateEmail(emailToAdd)) {
+                alert("Please enter a valid email address to invite.");
+                return;
+              }
 
               if (teamMembers.length >= 10) {
                 alert("Team limit reached. Upgrade to custom plan for more users.");
