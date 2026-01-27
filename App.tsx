@@ -2269,6 +2269,9 @@ const App: React.FC = () => {
                             <ArrowRight className="w-6 h-6" />
                           </button>
                         )}
+                        <button onClick={toggleTheme} className={`p-2.5 rounded-xl transition-all ${isDarkMode ? 'bg-slate-900 text-yellow-500' : 'bg-white shadow-sm border text-slate-600'}`}>
+                          {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                        </button>
                         <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">{isMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}</button>
                       </div>
                     </div>
@@ -2276,6 +2279,22 @@ const App: React.FC = () => {
                     {isMenuOpen && (
                       <div className={`md:hidden p-6 border-t animate-in slide-in-from-top-4 duration-300 ${isDarkMode ? 'bg-slate-950 border-slate-800' : 'bg-white border-slate-100'}`}>
                         <div className="flex flex-col space-y-6 font-black uppercase tracking-widest">
+                          <div className="flex items-center justify-between pb-6 border-b border-indigo-500/10">
+                            <span className="text-xs opacity-50">Switch Theme</span>
+                            <button onClick={toggleTheme} className={`p-3 rounded-2xl transition-all ${isDarkMode ? 'bg-slate-900 text-yellow-500' : 'bg-slate-50 text-slate-600 border border-slate-200'}`}>
+                              {isDarkMode ? (
+                                <div className="flex items-center gap-3">
+                                  <Sun className="w-5 h-5" />
+                                  <span className="text-[10px] font-black uppercase">Light Mode</span>
+                                </div>
+                              ) : (
+                                <div className="flex items-center gap-3">
+                                  <Moon className="w-5 h-5" />
+                                  <span className="text-[10px] font-black uppercase">Dark Mode</span>
+                                </div>
+                              )}
+                            </button>
+                          </div>
                           {['About', 'Features', 'Simulator', 'Pricing', 'Blogs'].map(item => (
                             <a
                               key={item}
