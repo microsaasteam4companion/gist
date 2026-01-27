@@ -952,14 +952,14 @@ const App: React.FC = () => {
 
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {stats.map((stat, i) => (
-              <div key={i} className={`p-8 rounded-[2.5rem] border-2 flex flex-col justify-between group hover:scale-[1.02] transition-all duration-500 ${isDarkMode ? 'bg-slate-900/40 border-slate-800/50 hover:border-indigo-500/30' : 'bg-white border-slate-100 shadow-sm'}`}>
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 ${isDarkMode ? 'bg-white/5' : 'bg-slate-50'}`}>
-                  <stat.icon className={`w-6 h-6 text-${stat.color}-500`} />
+              <div key={i} className={`p-6 sm:p-8 rounded-2xl sm:rounded-[2.5rem] border-2 flex flex-col justify-between group hover:scale-[1.02] transition-all duration-500 ${isDarkMode ? 'bg-slate-900/40 border-slate-800/50 hover:border-indigo-500/30' : 'bg-white border-slate-100 shadow-sm'}`}>
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 ${isDarkMode ? 'bg-white/5' : 'bg-slate-50'}`}>
+                  <stat.icon className={`w-5 h-5 sm:w-6 sm:h-6 text-${stat.color}-500`} />
                 </div>
                 <div>
-                  <p className="text-3xl font-black tracking-tighter mb-1">{stat.value}</p>
+                  <p className="text-2xl sm:text-3xl font-black tracking-tighter mb-1">{stat.value}</p>
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">{stat.label}</p>
                 </div>
               </div>
@@ -967,7 +967,7 @@ const App: React.FC = () => {
           </div>
 
 
-          <div className={`p-10 rounded-[3rem] border-2 bg-gradient-to-br from-indigo-600/10 to-transparent ${isDarkMode ? 'border-indigo-500/20' : 'bg-indigo-50/50 border-indigo-100'}`}>
+          <div className={`p-6 sm:p-10 rounded-3xl sm:rounded-[3rem] border-2 bg-gradient-to-br from-indigo-600/10 to-transparent ${isDarkMode ? 'border-indigo-500/20' : 'bg-indigo-50/50 border-indigo-100'}`}>
             <h4 className="text-xl font-black uppercase tracking-tight mb-8">Tier Features</h4>
             <div className="space-y-6">
               {[
@@ -1004,12 +1004,12 @@ const App: React.FC = () => {
 
   const renderDashboard = () => (
     <div className={`flex h-screen overflow-hidden ${isDarkMode ? 'bg-[#020617]' : 'bg-slate-50'}`}>
-      <aside className={`w-20 lg:w-72 border-r flex flex-col transition-all duration-500 z-50 ${isDarkMode ? 'bg-slate-950/40 border-slate-800/50' : 'bg-white border-slate-200'}`}>
-        <div className="p-6 h-20 flex items-center justify-center lg:justify-start gap-3 cursor-pointer group" onClick={() => setView('landing')}>
-          <div className="bg-gradient-to-br from-indigo-500 to-fuchsia-600 p-2 rounded-xl scale-110 group-hover:rotate-12 transition-all">
-            <Zap className="w-5 h-5 text-white fill-current" />
+      <aside className={`w-16 sm:w-20 lg:w-72 border-r flex flex-col transition-all duration-500 z-50 ${isDarkMode ? 'bg-slate-950/40 border-slate-800/50' : 'bg-white border-slate-200'}`}>
+        <div className="p-4 sm:p-6 h-20 flex items-center justify-center lg:justify-start gap-3 cursor-pointer group" onClick={() => setView('landing')}>
+          <div className="bg-gradient-to-br from-indigo-500 to-fuchsia-600 p-1.5 sm:p-2 rounded-lg sm:rounded-xl scale-100 sm:scale-110 group-hover:rotate-12 transition-all">
+            <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-white fill-current" />
           </div>
-          <span className="text-2xl font-black tracking-tighter hidden lg:block">babysimple</span>
+          <span className="text-xl sm:text-2xl font-black tracking-tighter hidden lg:block">babysimple</span>
         </div>
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {[
@@ -1022,9 +1022,9 @@ const App: React.FC = () => {
             <button
               key={item.id}
               onClick={() => setDashboardView(item.id as any)}
-              className={`w-full flex items-center justify-center lg:justify-start gap-4 p-4 rounded-2xl transition-all ${dashboardView === item.id ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' : isDarkMode ? 'text-slate-500 hover:bg-slate-900 hover:text-slate-300' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-600'}`}
+              className={`w-full flex items-center justify-center lg:justify-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl transition-all ${dashboardView === item.id ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' : isDarkMode ? 'text-slate-500 hover:bg-slate-900 hover:text-slate-300' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-600'}`}
             >
-              {item.icon}
+              <div className="shrink-0">{item.icon}</div>
               <span className="font-bold hidden lg:block">{item.label}</span>
             </button>
           ))}
@@ -1061,7 +1061,7 @@ const App: React.FC = () => {
         </div>
       </aside>
 
-      <main className="flex-1 overflow-y-auto p-6 lg:p-12 relative">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-12 relative">
         <header className="flex items-center justify-between mb-12 flex-wrap gap-4">
           <div className="flex items-center gap-6">
             <button
@@ -1073,7 +1073,7 @@ const App: React.FC = () => {
             </button>
             <div>
               <div className="flex items-center gap-4 mb-1">
-                <h1 className="text-4xl font-black tracking-tighter uppercase italic">{userTier} Plan Workspace</h1>
+                <h1 className="text-2xl sm:text-4xl font-black tracking-tighter uppercase italic">{userTier} Plan Workspace</h1>
 
               </div>
               <p className="opacity-40 font-bold uppercase tracking-[0.2em] text-[10px]">
@@ -1124,7 +1124,7 @@ const App: React.FC = () => {
                 </select>
               </div>
 
-              <div className={`rounded-[3rem] p-8 border-2 ${isDarkMode ? 'bg-slate-950/40 border-slate-800/50' : 'bg-white border-slate-100 shadow-sm'}`}>
+              <div className={`rounded-3xl sm:rounded-[3rem] p-6 sm:p-8 border-2 ${isDarkMode ? 'bg-slate-950/40 border-slate-800/50' : 'bg-white border-slate-100 shadow-sm'}`}>
                 <textarea
                   value={inputText}
                   onChange={(e) => {
@@ -1136,7 +1136,7 @@ const App: React.FC = () => {
                   }}
                   placeholder="Paste your materials here..."
                   maxLength={getTierLimits().charLimit}
-                  className="w-full h-64 bg-transparent resize-none focus:outline-none text-xl leading-relaxed"
+                  className="w-full h-48 sm:h-64 bg-transparent resize-none focus:outline-none text-lg sm:text-xl leading-relaxed"
                 ></textarea>
                 <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center justify-between mb-2">
@@ -1161,7 +1161,7 @@ const App: React.FC = () => {
               </div>
 
               {outputText && (
-                <div className={`rounded-[3rem] p-10 border-2 animate-in fade-in slide-in-from-bottom-8 duration-700 overflow-hidden ${isDarkMode ? 'bg-indigo-950/20 border-indigo-500/30 text-indigo-50' : 'bg-emerald-50 border-emerald-100 text-emerald-900'}`}>
+                <div className={`rounded-3xl sm:rounded-[3rem] p-6 sm:p-10 border-2 animate-in fade-in slide-in-from-bottom-8 duration-700 overflow-hidden ${isDarkMode ? 'bg-indigo-950/20 border-indigo-500/30 text-indigo-50' : 'bg-emerald-50 border-emerald-100 text-emerald-900'}`}>
                   <div className="flex items-center justify-between mb-8 text-emerald-500">
                     <div className="flex items-center gap-3">
                       <Sparkles className="w-5 h-5" />
@@ -1181,13 +1181,13 @@ const App: React.FC = () => {
 
             <div className="lg:col-span-12 xl:col-span-4 flex flex-col gap-6" style={{ display: view === 'dashboard' ? 'flex' : 'none' }}>
               {(userTier === 'Enterprise' || userTier === 'Pro') && outputText && (
-                <div className={`rounded-[3rem] p-8 border-2 flex flex-col flex-1 overflow-hidden min-h-[400px] ${isDarkMode ? 'bg-slate-900/60 border-indigo-500/20 shadow-[0_0_50px_rgba(99,102,241,0.1)]' : 'bg-white border-slate-100 shadow-xl'}`}>
+                <div className={`rounded-3xl sm:rounded-[3rem] p-6 sm:p-8 border-2 flex flex-col flex-1 overflow-hidden min-h-[350px] sm:min-h-[400px] ${isDarkMode ? 'bg-slate-900/60 border-indigo-500/20 shadow-[0_0_50px_rgba(99,102,241,0.1)]' : 'bg-white border-slate-100 shadow-xl'}`}>
                   <div className="flex items-center gap-3 mb-6 shrink-0">
                     <Zap className="w-5 h-5 text-indigo-500" />
                     <h4 className="text-lg font-black uppercase tracking-tight">Deep Dive Chat</h4>
                   </div>
 
-                  <div className="flex-1 space-y-4 mb-6 overflow-y-auto pr-2 custom-scrollbar">
+                  <div className="flex-1 space-y-4 mb-6 overflow-y-auto pr-1 sm:pr-2 custom-scrollbar">
                     {chatMessages.length === 0 && (
                       <div className="text-center py-10 opacity-30 italic text-sm">
                         Ask follow-up questions to understand specific parts better.
@@ -1233,8 +1233,8 @@ const App: React.FC = () => {
                 </div>
               )}
 
-              <div className={`rounded-[3rem] border-2 flex flex-col flex-1 overflow-hidden min-h-0 ${isDarkMode ? 'bg-slate-900/40 border-slate-800/50' : 'bg-white border-slate-100 shadow-sm'}`}>
-                <div className="p-8 border-b border-white/5 flex items-center justify-between font-black uppercase tracking-tighter shrink-0">
+              <div className={`rounded-3xl sm:rounded-[3rem] border-2 flex flex-col flex-1 overflow-hidden min-h-0 ${isDarkMode ? 'bg-slate-900/40 border-slate-800/50' : 'bg-white border-slate-100 shadow-sm'}`}>
+                <div className="p-6 sm:p-8 border-b border-white/5 flex items-center justify-between font-black uppercase tracking-tighter shrink-0">
                   <h3>Session History</h3>
                   <span className="bg-indigo-500/10 text-indigo-500 px-3 py-1 rounded-lg text-xs">{history.length}</span>
                 </div>
@@ -1318,16 +1318,16 @@ const App: React.FC = () => {
                     </div>
                   </header>
 
-                  <div className="grid lg:grid-cols-12 gap-8 items-start">
+                  <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-start">
                     {/* Left: Content Reader */}
-                    <div className={`${(userTier === 'Enterprise' || userTier === 'Pro') ? 'lg:col-span-8' : 'lg:col-span-12'} rounded-[3rem] border-2 overflow-hidden flex flex-col ${isDarkMode ? 'bg-slate-950/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
-                      <div className="p-8 border-b border-indigo-500/10 flex items-center justify-between bg-indigo-500/5">
+                    <div className={`${(userTier === 'Enterprise' || userTier === 'Pro') ? 'lg:col-span-8' : 'lg:col-span-12'} rounded-3xl sm:rounded-[3rem] border-2 overflow-hidden flex flex-col ${isDarkMode ? 'bg-slate-950/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
+                      <div className="p-6 sm:p-8 border-b border-indigo-500/10 flex items-center justify-between bg-indigo-500/5">
                         <div className="flex items-center gap-3">
-                          <FileText className="w-6 h-6 text-indigo-500" />
-                          <h3 className="text-xl font-black uppercase tracking-tight">Simplified Gist</h3>
+                          <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-500" />
+                          <h3 className="text-lg sm:text-xl font-black uppercase tracking-tight">Simplified Gist</h3>
                         </div>
                       </div>
-                      <div className="p-10 overflow-y-auto custom-scrollbar h-[calc(100vh-320px)] min-h-[500px]">
+                      <div className="p-6 sm:p-10 overflow-y-auto custom-scrollbar h-[calc(100vh-320px)] min-h-[400px] sm:min-h-[500px]">
                         <div className="prose prose-indigo max-w-none dark:prose-invert">
                           {renderOutput(selectedHistoryItem.output)}
                         </div>
@@ -1337,7 +1337,7 @@ const App: React.FC = () => {
                     {/* Right: Gist Analysis Chat */}
                     {(userTier === 'Enterprise' || userTier === 'Pro') && (
                       <div className="lg:col-span-4 lg:sticky lg:top-8">
-                        <div className={`rounded-[3rem] p-8 border-2 flex flex-col overflow-hidden h-[calc(100vh-120px)] min-h-[600px] ${isDarkMode ? 'bg-slate-900/60 border-indigo-500/20 shadow-[0_0_50px_rgba(99,102,241,0.1)]' : 'bg-white border-slate-100 shadow-xl'}`}>
+                        <div className={`rounded-3xl sm:rounded-[3rem] p-6 sm:p-8 border-2 flex flex-col overflow-hidden h-[calc(100vh-120px)] min-h-[500px] sm:min-h-[600px] ${isDarkMode ? 'bg-slate-900/60 border-indigo-500/20 shadow-[0_0_50px_rgba(99,102,241,0.1)]' : 'bg-white border-slate-100 shadow-xl'}`}>
                           <div className="flex flex-col gap-4 mb-8 shrink-0">
                             <div className="flex items-center gap-3">
                               <Zap className="w-6 h-6 text-indigo-500" />
@@ -1407,9 +1407,9 @@ const App: React.FC = () => {
         {
           dashboardView === 'files' && (
             <div className="max-w-5xl">
-              <h3 className="text-2xl font-black mb-8">File Upload</h3>
-              <div className={`p-16 rounded-3xl border-2 border-dashed text-center transition-all ${isDarkMode ? 'bg-slate-900/40 border-slate-700 hover:border-indigo-500' : 'bg-slate-50 border-slate-300 hover:border-indigo-400'}`}>
-                <FileText className="w-20 h-20 mx-auto mb-6 opacity-30" />
+              <h3 className="text-2xl font-black mb-6 sm:mb-8">File Upload</h3>
+              <div className={`p-8 sm:p-16 rounded-2xl sm:rounded-3xl border-2 border-dashed text-center transition-all ${isDarkMode ? 'bg-slate-900/40 border-slate-700 hover:border-indigo-500' : 'bg-slate-50 border-slate-300 hover:border-indigo-400'}`}>
+                <FileText className="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 opacity-30" />
                 <h4 className="text-xl font-black mb-2">Upload Document</h4>
                 <p className="opacity-60 max-w-md mx-auto mb-8">Upload documents (PDF, DOCX, TXT) for instant simplification.</p>
 
@@ -1445,11 +1445,11 @@ const App: React.FC = () => {
       {/* History Modal */}
       {
         selectedHistoryItem && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setSelectedHistoryItem(null)}>
-            <div className={`w-full max-w-6xl h-[85vh] flex flex-col rounded-3xl p-8 shadow-2xl border-2 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-100'}`} onClick={e => e.stopPropagation()}>
-              <div className="flex justify-between items-center mb-6 shrink-0">
-                <span className="opacity-50 font-bold">{new Date(selectedHistoryItem.timestamp).toLocaleString()}</span>
-                <button onClick={() => setSelectedHistoryItem(null)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><X className="w-6 h-6" /></button>
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-sm" onClick={() => setSelectedHistoryItem(null)}>
+            <div className={`w-full max-w-6xl h-[90vh] sm:h-[85vh] flex flex-col rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl border-2 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-100'}`} onClick={e => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-4 sm:mb-6 shrink-0">
+                <span className="opacity-50 font-bold text-xs sm:text-base">{new Date(selectedHistoryItem.timestamp).toLocaleString()}</span>
+                <button onClick={() => setSelectedHistoryItem(null)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><X className="w-5 h-5 sm:w-6 sm:h-6" /></button>
               </div>
               <div className="grid md:grid-cols-2 gap-8 h-full overflow-hidden">
                 <div className="flex flex-col h-full overflow-hidden">
@@ -1612,8 +1612,8 @@ const App: React.FC = () => {
   };
 
   const renderBlogList = () => (
-    <div className={`max-w-7xl mx-auto px-6 py-32 transition-colors duration-500 ${isDarkMode ? 'bg-[#020617]' : 'bg-[#f8fafc]'}`}>
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className={`max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-32 transition-colors duration-500 ${isDarkMode ? 'bg-[#020617]' : 'bg-[#f8fafc]'}`}>
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-12 sm:mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
         <div>
           <button
             onClick={() => setView('landing')}
@@ -1621,8 +1621,8 @@ const App: React.FC = () => {
           >
             <ArrowRight className="w-4 h-4 rotate-180 transition-transform group-hover:-translate-x-1" /> Back to Home
           </button>
-          <h1 className="text-6xl font-black mb-4 tracking-tighter leading-none">The babysimple Blog.</h1>
-          <p className="opacity-40 font-bold uppercase tracking-[0.2em] text-xs">Clarity as a competitive advantage in 2026</p>
+          <h1 className="text-4xl sm:text-6xl font-black mb-4 tracking-tighter leading-none">The babysimple Blog.</h1>
+          <p className="opacity-40 font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs">Clarity as a competitive advantage in 2026</p>
         </div>
       </div>
 
@@ -1630,7 +1630,7 @@ const App: React.FC = () => {
         {BLOG_POSTS.map((post, idx) => (
           <div
             key={post.id}
-            className={`group relative flex flex-col rounded-[2.5rem] border-2 overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl cursor-pointer animate-in fade-in slide-in-from-bottom-8 fill-mode-both ${isDarkMode ? 'bg-[#0f172a] border-slate-800 hover:border-indigo-500/50 hover:shadow-indigo-500/10' : 'bg-white border-slate-100 shadow-sm hover:border-indigo-200 hover:shadow-indigo-500/5'}`}
+            className={`group relative flex flex-col rounded-3xl sm:rounded-[2.5rem] border-2 overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl cursor-pointer animate-in fade-in slide-in-from-bottom-8 fill-mode-both ${isDarkMode ? 'bg-[#0f172a] border-slate-800 hover:border-indigo-500/50 hover:shadow-indigo-500/10' : 'bg-white border-slate-100 shadow-sm hover:border-indigo-200 hover:shadow-indigo-500/5'}`}
             style={{ animationDelay: `${idx * 100}ms` }}
             onClick={() => {
               setSelectedBlogPostId(post.id);
@@ -1782,15 +1782,15 @@ const App: React.FC = () => {
           const content = line.replace('!!! contrast ', '');
           const [left, right] = content.split(' | ');
           elements.push(
-            <div key={i} className="my-16 flex flex-col md:flex-row gap-8">
-              <div className={`flex-1 p-10 rounded-[3rem] border-2 transition-all hover:scale-[1.02] ${isDarkMode ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-emerald-50 border-emerald-100 shadow-xl shadow-emerald-500/5'}`}>
-                <p className="text-xs font-black uppercase tracking-[0.4em] text-emerald-500 mb-6">The Clear Model</p>
-                <h4 className="text-3xl font-black mb-4 tracking-tighter">{left}</h4>
+            <div key={i} className="my-10 sm:my-16 flex flex-col md:flex-row gap-6 sm:gap-8">
+              <div className={`flex-1 p-6 sm:p-10 rounded-2xl sm:rounded-[3rem] border-2 transition-all hover:scale-[1.02] ${isDarkMode ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-emerald-50 border-emerald-100 shadow-xl shadow-emerald-500/5'}`}>
+                <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] text-emerald-500 mb-4 sm:mb-6">The Clear Model</p>
+                <h4 className="text-2xl sm:text-3xl font-black mb-4 tracking-tighter">{left}</h4>
                 <div className="w-8 h-1 bg-emerald-500/30 rounded-full"></div>
               </div>
-              <div className={`flex-1 p-10 rounded-[3rem] border-2 transition-all hover:scale-[1.02] ${isDarkMode ? 'bg-slate-800/50 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
-                <p className="text-xs font-black uppercase tracking-[0.4em] opacity-40 mb-6">The Complex Model</p>
-                <h4 className="text-3xl font-black mb-4 tracking-tighter opacity-70">{right}</h4>
+              <div className={`flex-1 p-6 sm:p-10 rounded-2xl sm:rounded-[3rem] border-2 transition-all hover:scale-[1.02] ${isDarkMode ? 'bg-slate-800/50 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
+                <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] opacity-40 mb-4 sm:mb-6">The Complex Model</p>
+                <h4 className="text-2xl sm:text-3xl font-black mb-4 tracking-tighter opacity-70">{right}</h4>
                 <div className="w-8 h-1 bg-slate-500/30 rounded-full"></div>
               </div>
             </div>
@@ -1801,18 +1801,18 @@ const App: React.FC = () => {
         // Handle Paradox Callout
         if (line.startsWith('!!! paradox')) {
           elements.push(
-            <div key={i} className={`p-10 my-12 rounded-[3.5rem] bg-indigo-500 text-white relative overflow-hidden group shadow-2xl shadow-indigo-500/30`}>
-              <div className="absolute -right-10 -bottom-10 text-[15rem] font-black opacity-10 group-hover:rotate-12 transition-transform duration-1000">?</div>
+            <div key={i} className={`p-6 sm:p-10 my-8 sm:my-12 rounded-2xl sm:rounded-[3.5rem] bg-indigo-500 text-white relative overflow-hidden group shadow-2xl shadow-indigo-500/30`}>
+              <div className="absolute -right-10 -bottom-10 text-[10rem] sm:text-[15rem] font-black opacity-10 group-hover:rotate-12 transition-transform duration-1000">?</div>
               <div className="relative z-10">
-                <p className="text-xs font-black uppercase tracking-[0.6em] text-indigo-200 mb-6">The Intelligence Paradox</p>
-                <p className="text-3xl font-black leading-tight tracking-tight mb-4">
+                <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.6em] text-indigo-200 mb-4 sm:mb-6 uppercase">The Intelligence Paradox</p>
+                <p className="text-2xl sm:text-3xl font-black leading-tight tracking-tight mb-4 uppercase italic">
                   {line.replace('!!! paradox ', '')}
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white/20 flex items-center justify-center">
                     <Check className="w-3 h-3" />
                   </div>
-                  <span className="text-sm font-bold text-indigo-100 italic">Mastered Simplicity = Perceived Genius</span>
+                  <span className="text-xs sm:text-sm font-bold text-indigo-100 italic">Mastered Simplicity = Perceived Genius</span>
                 </div>
               </div>
             </div>
@@ -1823,17 +1823,17 @@ const App: React.FC = () => {
         // Handle Jargon Jar Challenge
         if (line.startsWith('!!! jar')) {
           elements.push(
-            <div key={i} className={`my-16 p-12 rounded-[4rem] border-4 border-dashed relative overflow-hidden group transition-all duration-700 hover:scale-[1.02] ${isDarkMode ? 'bg-amber-500/5 border-amber-500/20' : 'bg-amber-50 border-amber-200'}`}>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5 text-[15rem] pointer-events-none group-hover:rotate-12 transition-transform duration-1000">🫙</div>
+            <div key={i} className={`my-10 sm:my-16 p-8 sm:p-12 rounded-3xl sm:rounded-[4rem] border-4 border-dashed relative overflow-hidden group transition-all duration-700 hover:scale-[1.02] ${isDarkMode ? 'bg-amber-500/5 border-amber-500/20' : 'bg-amber-50 border-amber-200'}`}>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5 text-[10rem] sm:text-[15rem] pointer-events-none group-hover:rotate-12 transition-transform duration-1000">🫙</div>
               <div className="relative z-10 text-center">
-                <p className="text-xs font-black uppercase tracking-[0.6em] text-amber-600 mb-6">Interactive Challenge</p>
-                <h4 className="text-4xl font-black mb-6 tracking-tighter">The Jargon Jar</h4>
-                <p className="text-xl font-medium opacity-80 max-w-2xl mx-auto mb-10">
+                <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.6em] text-amber-600 mb-4 sm:mb-6 uppercase">Interactive Challenge</p>
+                <h4 className="text-3xl sm:text-4xl font-black mb-6 tracking-tighter uppercase">The Jargon Jar</h4>
+                <p className="text-lg sm:text-xl font-medium opacity-80 max-w-2xl mx-auto mb-8 sm:mb-10 uppercase italic">
                   {line.replace('!!! jar ', '')}
                 </p>
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-3 sm:gap-4">
                   {[1, 5, 10].map(val => (
-                    <div key={val} className="w-16 h-16 rounded-full bg-amber-500 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-amber-500/40 hover:animate-bounce cursor-pointer">
+                    <div key={val} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-amber-500 text-white flex items-center justify-center font-black text-lg sm:text-xl shadow-lg shadow-amber-500/40 hover:animate-bounce cursor-pointer">
                       ${val}
                     </div>
                   ))}
@@ -1848,7 +1848,7 @@ const App: React.FC = () => {
         if (line.startsWith('> ')) {
           const isManifesto = line.includes('manifesto') || line.includes('Manifesto');
           elements.push(
-            <div key={i} className={`p-10 my-12 rounded-[3rem] border-2 relative overflow-hidden group transition-all duration-500 hover:scale-[1.01] ${isManifesto ? 'bg-indigo-600 border-indigo-500 text-white' : (isDarkMode ? 'bg-indigo-500/5 border-indigo-500/20' : 'bg-slate-50 border-slate-100')}`}>
+            <div key={i} className={`p-6 sm:p-10 my-8 sm:my-12 rounded-2xl sm:rounded-[3rem] border-2 relative overflow-hidden group transition-all duration-500 hover:scale-[1.01] ${isManifesto ? 'bg-indigo-600 border-indigo-500 text-white' : (isDarkMode ? 'bg-indigo-500/5 border-indigo-500/20' : 'bg-slate-50 border-slate-100')}`}>
               <div className={`absolute top-0 left-0 w-2 h-full ${isManifesto ? 'bg-white/30' : 'bg-indigo-500'}`}></div>
               <span className={`text-6xl font-black absolute -top-4 -left-2 opacity-5 pointer-events-none ${isManifesto ? 'text-white' : ''}`}>“</span>
               <p className={`text-2xl font-black leading-relaxed tracking-tight italic relative z-10 ${isManifesto ? 'text-white' : ''}`}>
@@ -2106,13 +2106,13 @@ const App: React.FC = () => {
     };
 
     return (
-      <div className="max-w-4xl mx-auto px-6 py-32">
-        <button onClick={() => { setView('blog'); window.history.pushState({}, '', '/blog'); }} className="flex items-center gap-2 text-indigo-500 font-black uppercase tracking-widest text-xs mb-12 hover:-translate-x-1 transition-transform">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-32">
+        <button onClick={() => { setView('blog'); window.history.pushState({}, '', '/blog'); }} className="flex items-center gap-2 text-indigo-500 font-black uppercase tracking-widest text-[10px] sm:text-xs mb-8 sm:12 hover:-translate-x-1 transition-transform">
           <ArrowRight className="w-4 h-4 rotate-180" /> Back to Blog
         </button>
         <div className="mb-12">
-          <span className="text-xs font-black uppercase tracking-[0.4em] text-indigo-500 mb-4 block group-hover:tracking-[0.5em] transition-all duration-500">{post.date}</span>
-          <h1 className="text-4xl md:text-5xl font-black mb-8 tracking-tighter leading-[1.1] uppercase bg-gradient-to-r from-indigo-500 to-fuchsia-500 bg-clip-text text-transparent">{post.title}</h1>
+          <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] text-indigo-500 mb-4 block group-hover:tracking-[0.5em] transition-all duration-500">{post.date}</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-8 tracking-tighter leading-[1.1] uppercase bg-gradient-to-r from-indigo-500 to-fuchsia-500 bg-clip-text text-transparent">{post.title}</h1>
         </div>
 
         <div className={`prose-container ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
@@ -2321,11 +2321,11 @@ const App: React.FC = () => {
                       <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full text-[10px] font-black mb-10 border transition-all hover:scale-105 ${isDarkMode ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-400' : 'bg-indigo-50 border-indigo-100 text-indigo-600'}`}>
                         <span className="uppercase tracking-[0.3em]">Precision-Engineered Clarity</span>
                       </div>
-                      <h1 className="text-5xl md:text-7xl font-[900] tracking-tighter mb-8 leading-[0.95]">
+                      <h1 className="text-4xl sm:text-5xl md:text-7xl font-[900] tracking-tighter mb-8 leading-[1.1] md:leading-[0.95]">
                         Everything is <br className="hidden md:block" />
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400">clearer with babysimple.</span>
                       </h1>
-                      <p className={`text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed font-medium transition-opacity ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <p className={`text-lg sm:text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed font-medium transition-opacity ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                         Tired of corporate doublespeak and dense legal jargon? <br className="hidden md:block" />
                         We translate the complex into the everyday, instantly.
                       </p>
@@ -2343,15 +2343,15 @@ const App: React.FC = () => {
                           Stay in the loop & join our community
                         </h4>
 
-                        <div className={`w-full flex p-2 rounded-[2.5rem] border-2 mb-12 items-center transition-all duration-500 shadow-2xl ${isDarkMode ? 'bg-slate-900/40 border-slate-800 focus-within:border-indigo-500/50 shadow-indigo-500/5' : 'bg-white border-slate-100 focus-within:border-indigo-200 shadow-slate-200'}`}>
+                        <div className={`w-full flex flex-col sm:flex-row p-2 rounded-2xl sm:rounded-[2.5rem] border-2 mb-12 items-center transition-all duration-500 shadow-2xl ${isDarkMode ? 'bg-slate-900/40 border-slate-800 focus-within:border-indigo-500/50 shadow-indigo-500/5' : 'bg-white border-slate-100 focus-within:border-indigo-200 shadow-slate-200'}`}>
                           <input
                             type="email"
                             value={newsletterEmail}
                             onChange={(e) => setNewsletterEmail(e.target.value)}
                             placeholder="Enter your email"
-                            className="flex-1 bg-transparent px-8 py-4 outline-none text-sm font-bold placeholder:opacity-40"
+                            className="w-full sm:flex-1 bg-transparent px-6 sm:px-8 py-4 outline-none text-sm font-bold placeholder:opacity-40"
                           />
-                          <button onClick={handleNewsletterSubscribe} className="bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-4 rounded-[1.8rem] font-black text-sm transition-all active:scale-95 shadow-xl shadow-indigo-600/20 uppercase tracking-widest">
+                          <button onClick={handleNewsletterSubscribe} className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-8 sm:px-10 py-4 rounded-xl sm:rounded-[1.8rem] font-black text-sm transition-all active:scale-95 shadow-xl shadow-indigo-600/20 uppercase tracking-widest mt-2 sm:mt-0">
                             Subscribe
                           </button>
                         </div>
@@ -2405,8 +2405,8 @@ const App: React.FC = () => {
 
                   <section id="simulator" className="py-24 px-6 relative">
                     <div className="max-w-7xl mx-auto">
-                      <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">One Tool, <span className="text-indigo-500">Unlimited</span> Contexts</h2>
+                      <div className="text-center mb-12 sm:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 tracking-tight px-4">One Tool, <span className="text-indigo-500">Unlimited</span> Contexts</h2>
                         <p className={`text-lg max-w-2xl mx-auto opacity-60 font-bold ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
                           From medical reports to technical docs, we've got you covered.
                         </p>
@@ -2415,7 +2415,7 @@ const App: React.FC = () => {
                             <button
                               key={n.id}
                               onClick={() => setSelectedNiche(n.id)}
-                              className={`px-8 py-4 rounded-[1.5rem] font-black transition-all border-2 text-sm ${selectedNiche === n.id ? 'bg-indigo-600 text-white border-indigo-400 shadow-2xl shadow-indigo-500/40 scale-110' : isDarkMode ? 'bg-slate-900/50 text-slate-400 border-slate-800 hover:border-slate-700' : 'bg-white text-slate-500 border-slate-100 hover:border-indigo-200'}`}
+                              className={`px-4 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-[1.5rem] font-black transition-all border-2 text-xs sm:text-sm ${selectedNiche === n.id ? 'bg-indigo-600 text-white border-indigo-400 shadow-2xl shadow-indigo-500/40 scale-105 sm:scale-110' : isDarkMode ? 'bg-slate-900/50 text-slate-400 border-slate-800 hover:border-slate-700' : 'bg-white text-slate-500 border-slate-100 hover:border-indigo-200'}`}
                             >
                               {n.label}
                             </button>
@@ -2423,8 +2423,8 @@ const App: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className={`rounded-[3rem] p-1 transition-all duration-700 bg-gradient-to-br ${isDarkMode ? 'from-indigo-500/30 via-fuchsia-500/20 to-cyan-500/30' : 'from-indigo-100 via-fuchsia-50 to-cyan-100'} group hover:shadow-[0_0_100px_rgba(99,102,241,0.2)]`}>
-                        <div className={`rounded-[2.95rem] p-8 md:p-12 flex flex-col lg:flex-row gap-12 ${isDarkMode ? 'bg-[#0a0f1e]/90 backdrop-blur-3xl shadow-inner' : 'bg-white/90 backdrop-blur-3xl shadow-xl shadow-slate-200'}`}>
+                      <div className={`rounded-3xl sm:rounded-[3rem] p-1 transition-all duration-700 bg-gradient-to-br ${isDarkMode ? 'from-indigo-500/30 via-fuchsia-500/20 to-cyan-500/30' : 'from-indigo-100 via-fuchsia-50 to-cyan-100'} group hover:shadow-[0_0_100px_rgba(99,102,241,0.2)]`}>
+                        <div className={`rounded-[1.45rem] sm:rounded-[2.95rem] p-6 sm:p-8 md:p-12 flex flex-col lg:flex-row gap-8 sm:gap-12 ${isDarkMode ? 'bg-[#0a0f1e]/90 backdrop-blur-3xl shadow-inner' : 'bg-white/90 backdrop-blur-3xl shadow-xl shadow-slate-200'}`}>
                           <div className="flex-1 flex flex-col">
                             <div className="flex items-center gap-3 mb-6 font-black uppercase text-indigo-500 text-xs tracking-[0.3em]"><Layers className="w-5 h-5" /> Source Material</div>
                             <textarea
@@ -2438,7 +2438,7 @@ const App: React.FC = () => {
                               }}
                               placeholder={activeNiche.placeholder}
                               maxLength={userTier === 'Enterprise' ? 25000 : userTier === 'Pro' ? 5000 : 800}
-                              className={`w-full h-80 p-8 rounded-[3rem] border-2 bg-transparent resize-none focus:outline-none transition-all duration-500 text-xl leading-relaxed ${isDarkMode ? 'border-slate-800 text-slate-300 focus:border-indigo-500/50' : 'border-slate-100 bg-white text-slate-800 focus:border-indigo-200 shadow-inner'}`}
+                              className={`w-full h-64 sm:h-80 p-6 sm:p-8 rounded-2xl sm:rounded-[3rem] border-2 bg-transparent resize-none focus:outline-none transition-all duration-500 text-lg sm:text-xl leading-relaxed ${isDarkMode ? 'border-slate-800 text-slate-300 focus:border-indigo-500/50' : 'border-slate-100 bg-white text-slate-800 focus:border-indigo-200 shadow-inner'}`}
                             ></textarea>
                             <div className="mt-2 text-right">
                               <span className={`text-[10px] font-black uppercase tracking-widest ${inputText.length > getTierLimits().charLimit ? 'text-red-500' : 'text-slate-500 opacity-50'}`}>
@@ -2459,8 +2459,8 @@ const App: React.FC = () => {
 
                           <div className="flex-1 flex flex-col text-left">
                             <div className="flex items-center gap-3 mb-6 font-black uppercase text-emerald-500 text-xs tracking-[0.3em]"><Sparkles className="w-5 h-5" /> Gist Output</div>
-                            <div className={`flex-1 min-h-[350px] h-full rounded-[3rem] border-2 border-dashed p-10 flex flex-col justify-center transition-all duration-500 overflow-hidden ${isDarkMode ? 'border-indigo-500/10 bg-indigo-500/5' : 'border-slate-200 bg-slate-50/50'}`}>
-                              {outputText ? <div className="animate-in fade-in slide-in-from-right-4 duration-700 italic opacity-95 w-full">{renderOutput(outputText)}</div> : <div className="text-center space-y-4 opacity-20"><Zap className="w-12 h-12 mx-auto animate-pulse" /><p className="text-lg font-bold">Waiting for input...</p></div>}
+                            <div className={`flex-1 min-h-[300px] sm:min-h-[350px] h-full rounded-2xl sm:rounded-[3rem] border-2 border-dashed p-6 sm:p-10 flex flex-col justify-center transition-all duration-500 overflow-hidden ${isDarkMode ? 'border-indigo-500/10 bg-indigo-500/5' : 'border-slate-200 bg-slate-50/50'}`}>
+                              {outputText ? <div className="animate-in fade-in slide-in-from-right-4 duration-700 italic opacity-95 w-full text-base sm:text-xl">{renderOutput(outputText)}</div> : <div className="text-center space-y-4 opacity-20"><Zap className="w-12 h-12 mx-auto animate-pulse" /><p className="text-lg font-bold">Waiting for input...</p></div>}
                             </div>
 
                             {/* Chat Section (Enterprise Only) */}
@@ -2512,44 +2512,44 @@ const App: React.FC = () => {
 
                   <section id="features" className={`py-32 relative overflow-hidden transition-colors duration-700 ${isDarkMode ? 'bg-slate-950/40' : 'bg-slate-50'}`}>
                     <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-                      <h2 className="text-5xl md:text-6xl font-[900] mb-8 tracking-tight">Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-500">babysimple?</span></h2>
-                      <p className={`text-xl mb-20 max-w-3xl mx-auto font-medium leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <h2 className="text-3xl sm:text-5xl md:text-6xl font-[900] mb-8 tracking-tight px-4">Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-500">babysimple?</span></h2>
+                      <p className={`text-lg sm:text-xl mb-12 sm:mb-20 max-w-3xl mx-auto font-medium leading-relaxed px-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                         Engineered for speed, privacy, and absolute clarity. Only Gist combines deep context awareness with a zero-knowledge architecture.
                       </p>
 
                       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
                         {/* Core Features */}
                         {FEATURES.map((feature, idx) => (
-                          <div key={idx} className={`p-10 rounded-[3rem] border-2 transition-all duration-500 float-on-hover group ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
-                            <div className="w-16 h-16 rounded-[1.5rem] bg-indigo-600 text-white flex items-center justify-center mb-8 shadow-xl group-hover:scale-110 transition-transform">{feature.icon}</div>
-                            <h3 className="text-2xl font-black mb-4 tracking-tight group-hover:text-indigo-500 transition-colors uppercase">{feature.title}</h3>
-                            <p className={`leading-relaxed font-bold opacity-50 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>{feature.description}</p>
+                          <div key={idx} className={`p-8 sm:p-10 rounded-2xl sm:rounded-[3rem] border-2 transition-all duration-500 float-on-hover group ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
+                            <div className="w-12 h-12 sm:w-16 h-12 sm:h-16 rounded-xl sm:rounded-[1.5rem] bg-indigo-600 text-white flex items-center justify-center mb-6 sm:mb-8 shadow-xl group-hover:scale-110 transition-transform">{feature.icon}</div>
+                            <h3 className="text-xl sm:text-2xl font-black mb-4 tracking-tight group-hover:text-indigo-500 transition-colors uppercase">{feature.title}</h3>
+                            <p className={`leading-relaxed font-bold opacity-50 text-sm sm:text-base ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>{feature.description}</p>
                           </div>
                         ))}
 
                         {/* Privacy Features */}
-                        <div className={`p-10 rounded-[3rem] border-2 transition-all duration-500 float-on-hover group ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
-                          <div className="w-16 h-16 rounded-[1.5rem] bg-emerald-500/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <ShieldCheck className="w-8 h-8 text-emerald-500" />
+                        <div className={`p-8 sm:p-10 rounded-2xl sm:rounded-[3rem] border-2 transition-all duration-500 float-on-hover group ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
+                          <div className="w-12 h-12 sm:w-16 h-12 sm:h-16 rounded-xl sm:rounded-[1.5rem] bg-emerald-500/10 flex items-center justify-center mb-6 sm:mb-8 group-hover:scale-110 transition-transform">
+                            <ShieldCheck className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-500" />
                           </div>
-                          <h3 className="text-2xl font-black mb-4 tracking-tight group-hover:text-emerald-500 transition-colors uppercase">No Data Stored</h3>
-                          <p className={`leading-relaxed font-bold opacity-50 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>Your text is processed instantly and never saved on our servers.</p>
+                          <h3 className="text-xl sm:text-2xl font-black mb-4 tracking-tight group-hover:text-emerald-500 transition-colors uppercase">No Data Stored</h3>
+                          <p className={`leading-relaxed font-bold opacity-50 text-sm sm:text-base ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>Your text is processed instantly and never saved on our servers.</p>
                         </div>
 
-                        <div className={`p-10 rounded-[3rem] border-2 transition-all duration-500 float-on-hover group ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
-                          <div className="w-16 h-16 rounded-[1.5rem] bg-emerald-500/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <Globe className="w-8 h-8 text-emerald-500" />
+                        <div className={`p-8 sm:p-10 rounded-2xl sm:rounded-[3rem] border-2 transition-all duration-500 float-on-hover group ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
+                          <div className="w-12 h-12 sm:w-16 h-12 sm:h-16 rounded-xl sm:rounded-[1.5rem] bg-emerald-500/10 flex items-center justify-center mb-6 sm:mb-8 group-hover:scale-110 transition-transform">
+                            <Globe className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-500" />
                           </div>
-                          <h3 className="text-2xl font-black mb-4 tracking-tight group-hover:text-emerald-500 transition-colors uppercase">Encrypted Pipeline</h3>
-                          <p className={`leading-relaxed font-bold opacity-50 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>All data transfers use industry-standard HTTPS encryption.</p>
+                          <h3 className="text-xl sm:text-2xl font-black mb-4 tracking-tight group-hover:text-emerald-500 transition-colors uppercase">Encrypted Pipeline</h3>
+                          <p className={`leading-relaxed font-bold opacity-50 text-sm sm:text-base ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>All data transfers use industry-standard HTTPS encryption.</p>
                         </div>
 
-                        <div className={`p-10 rounded-[3rem] border-2 transition-all duration-500 float-on-hover group ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
-                          <div className="w-16 h-16 rounded-[1.5rem] bg-emerald-500/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <Zap className="w-8 h-8 text-emerald-500" />
+                        <div className={`p-8 sm:p-10 rounded-2xl sm:rounded-[3rem] border-2 transition-all duration-500 float-on-hover group ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
+                          <div className="w-12 h-12 sm:w-16 h-12 sm:h-16 rounded-xl sm:rounded-[1.5rem] bg-emerald-500/10 flex items-center justify-center mb-6 sm:mb-8 group-hover:scale-110 transition-transform">
+                            <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-500" />
                           </div>
-                          <h3 className="text-2xl font-black mb-4 tracking-tight group-hover:text-emerald-500 transition-colors uppercase">Real-Time Only</h3>
-                          <p className={`leading-relaxed font-bold opacity-50 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>Text goes in, simplified text comes out. Nothing in between.</p>
+                          <h3 className="text-xl sm:text-2xl font-black mb-4 tracking-tight group-hover:text-emerald-500 transition-colors uppercase">Real-Time Only</h3>
+                          <p className={`leading-relaxed font-bold opacity-50 text-sm sm:text-base ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>Text goes in, simplified text comes out. Nothing in between.</p>
                         </div>
                       </div>
                     </div>
@@ -2561,9 +2561,9 @@ const App: React.FC = () => {
                         <h2 className="text-6xl font-[900] mb-6 tracking-tighter">Fair <span className="text-indigo-600">Plans.</span></h2>
                         <p className={`text-xl font-medium ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Clarity should be accessible to everyone.</p>
                       </div>
-                      <div className="grid lg:grid-cols-3 gap-12">
+                      <div className="grid lg:grid-cols-3 gap-6 sm:gap-12">
                         {PRICING_TIERS.map((tier, idx) => (
-                          <div key={idx} className={`p-12 rounded-[4rem] border-2 flex flex-col transition-all relative ${tier.isPopular ? (isDarkMode ? 'scale-110 z-10 border-indigo-500 bg-indigo-500/5 shadow-2xl shadow-indigo-500/10' : 'scale-110 z-10 border-indigo-500 bg-white shadow-2xl shadow-indigo-500/20') : (isDarkMode ? 'border-slate-800 bg-slate-950/20' : 'border-slate-200 bg-white shadow-sm')}`}>
+                          <div key={idx} className={`p-8 sm:p-12 rounded-3xl sm:rounded-[4rem] border-2 flex flex-col transition-all relative ${tier.isPopular ? (isDarkMode ? 'lg:scale-110 z-10 border-indigo-500 bg-indigo-500/5 shadow-2xl shadow-indigo-500/10' : 'lg:scale-110 z-10 border-indigo-500 bg-white shadow-2xl shadow-indigo-500/20') : (isDarkMode ? 'border-slate-800 bg-slate-950/20' : 'border-slate-200 bg-white shadow-sm')}`}>
                             {tier.isPopular && <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-indigo-500 text-white text-[10px] font-black uppercase tracking-[0.3em] px-8 py-2 rounded-full shadow-xl">Recommended</div>}
                             <h3 className="text-2xl font-black mb-2 uppercase tracking-tight">{tier.name}</h3>
                             <div className="flex items-baseline gap-2 mb-6">
@@ -2592,14 +2592,14 @@ const App: React.FC = () => {
                           <HelpCircle className="w-3 h-3" />
                           <span className="uppercase tracking-[0.2em]">Got Questions?</span>
                         </div>
-                        <h2 className="text-5xl md:text-6xl font-[900] tracking-tighter mb-4">Common <span className="text-indigo-500">Queries.</span></h2>
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-[900] tracking-tighter mb-4 px-4">Common <span className="text-indigo-500">Queries.</span></h2>
                       </div>
 
                       <div className="space-y-4">
                         {FAQ_ITEMS.map((faq, idx) => (
                           <div
                             key={idx}
-                            className={`rounded-[2.5rem] border-2 transition-all duration-500 overflow-hidden ${activeFAQ === idx ? (isDarkMode ? 'bg-slate-900 border-indigo-500/50' : 'bg-white border-indigo-500 shadow-xl') : (isDarkMode ? 'bg-slate-900/40 border-slate-800 hover:border-slate-700' : 'bg-white border-slate-100 hover:border-indigo-100 shadow-sm')}`}
+                            className={`rounded-2xl sm:rounded-[2.5rem] border-2 transition-all duration-500 overflow-hidden ${activeFAQ === idx ? (isDarkMode ? 'bg-slate-900 border-indigo-500/50' : 'bg-white border-indigo-500 shadow-xl') : (isDarkMode ? 'bg-slate-900/40 border-slate-800 hover:border-slate-700' : 'bg-white border-slate-100 hover:border-indigo-100 shadow-sm')}`}
                           >
                             <button
                               onClick={() => setActiveFAQ(activeFAQ === idx ? null : idx)}
@@ -2611,7 +2611,7 @@ const App: React.FC = () => {
                               </div>
                             </button>
                             <div className={`transition-all duration-500 ease-in-out ${activeFAQ === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-                              <div className="p-8 pt-0 opacity-60 font-medium text-lg leading-relaxed border-t border-slate-800/10 mt-2 pt-6">
+                              <div className="p-6 sm:p-8 pt-0 opacity-60 font-medium text-base sm:text-lg leading-relaxed border-t border-slate-800/10 mt-2 pt-6">
                                 {faq.answer}
                               </div>
                             </div>
