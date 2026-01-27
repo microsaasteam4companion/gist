@@ -2337,9 +2337,6 @@ const App: React.FC = () => {
 
                   <section className="relative pt-32 pb-24 px-6 text-center">
                     <div className="max-w-6xl mx-auto">
-                      <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full text-[10px] font-black mb-10 border transition-all hover:scale-105 ${isDarkMode ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-400' : 'bg-indigo-50 border-indigo-100 text-indigo-600'}`}>
-                        <span className="uppercase tracking-[0.3em]">Precision-Engineered Clarity</span>
-                      </div>
                       <h1 className="text-4xl sm:text-5xl md:text-7xl font-[900] tracking-tighter mb-8 leading-[1.1] md:leading-[0.95]">
                         Everything is <br className="hidden md:block" />
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400">clearer with babysimple.</span>
